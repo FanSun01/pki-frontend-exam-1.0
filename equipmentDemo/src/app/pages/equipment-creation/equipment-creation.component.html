@@ -1,7 +1,34 @@
 <app-layout>
   <hr />
-  <form [formGroup]="myForm">
-    <label>usermame: </label>
-    <input type="text" formControlName="username">
-  </form>
+  <div class="container">
+    <div class="form-group">
+      <form [formGroup]="equipmentForm" (submit)="onSubmit()">
+        <label> id: </label>
+        <input
+          type="text"
+          formControlName="id"
+          class="form-control"
+          placeholder="should be auto generated"
+        />
+        <hr />
+        <label> model: </label>
+        <input type="text" formControlName="model" class="form-control" />
+        <hr />
+        <label> brand: </label>
+        <input type="text" formControlName="brand" class="form-control" />
+        <hr />
+        <label> weight: </label>
+        <input type="text" formControlName="weight" class="form-control" />
+        <hr />
+        <label> manufactureDate: </label>
+        <input
+          type="date"
+          formControlName="manufactureDate"
+          class="form-control"
+        />
+        <hr />
+        <button class="btn btn-primary">提交</button>
+      </form>
+    </div>
+  </div>
 </app-layout>

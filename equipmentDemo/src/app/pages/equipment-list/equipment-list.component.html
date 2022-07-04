@@ -1,1 +1,19 @@
-<p>equipment-list works!</p>
+<div class="row">
+  <div class="col-12">
+    <hr />
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    <ul class="list-group">
+      <li
+        @slide
+        *ngFor="let message of messages; let i = index"
+        class="list-group-item"
+      >
+        {{ message }}
+        <button (click)="deleteMessage(i)" type="button">删除</button>
+      </li>
+    </ul>
+  </div>
+</div>

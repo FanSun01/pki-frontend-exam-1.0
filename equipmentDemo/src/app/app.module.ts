@@ -9,6 +9,10 @@ import { EquipmentListComponent } from './pages/equipment-list/equipment-list.co
 import { EquipmentDetailComponent } from './pages/equipment-detail/equipment-detail.component';
 import { EquipmentCreationComponent } from './pages/equipment-creation/equipment-creation.component';
 import { EquipmentDialogsComponent } from './pages/equipment-dialogs/equipment-dialogs.component';
+import { HomeComponent } from './pages/home/home.component';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,8 +23,17 @@ import { EquipmentDialogsComponent } from './pages/equipment-dialogs/equipment-d
     EquipmentDetailComponent,
     EquipmentCreationComponent,
     EquipmentDialogsComponent,
+    HomeComponent,
+    NotfoundComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

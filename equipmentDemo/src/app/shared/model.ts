@@ -1,9 +1,9 @@
-export class PrivateMessage {
-  user?: string;
-  message?: string;
-}
 
-export class ImportProgress {
-  msg1?: string;
-  msg2?: string;
+
+export class Equipment {
+  id: string = '';
+  model: string = '';
+  brand: string = '';
+  weight: string = '';
+  manufactureDate: Date = new Date();
 }

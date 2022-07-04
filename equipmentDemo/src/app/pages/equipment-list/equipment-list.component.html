@@ -8,11 +8,11 @@
     <ul class="list-group">
       <li
         @slide
-        *ngFor="let message of messages; let i = index"
+        *ngFor="let equipment of equipments; let i = index"
         class="list-group-item"
       >
-        {{ message }}
-        <button (click)="deleteMessage(i)" type="button">删除</button>
+        {{ equipment.id }}
+        <button (click)="deleteEquipments(i)" type="button">删除</button>
       </li>
     </ul>
   </div>

@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { Equipment } from 'src/app/shared/model';
 
 @Component({
   selector: 'app-equipment-list',
   templateUrl: './equipment-list.component.html',
-  styleUrls: ['./equipment-list.component.scss']
+  styleUrls: ['./equipment-list.component.scss'],
 })
 export class EquipmentListComponent implements OnInit {
-  public messages: String[] = [];
+  public equipments: Equipment[] = [];
 
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-  deleteMessage(i: number) {
-    this.messages.splice(i);
+  ngOnInit(): void {}
+  deleteEquipments(i: number) {
+    this.equipments.splice(i);
   }
 }

@@ -14,7 +14,7 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { BootstrapModalModule } from 'ngx-bootstrap-modal';
+//import { BootstrapModalModule } from 'ngx-bootstrap-modal';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,7 @@ import { BootstrapModalModule } from 'ngx-bootstrap-modal';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BootstrapModalModule
+    //BootstrapModalModule
   ],
   providers: [],
   bootstrap: [AppComponent],

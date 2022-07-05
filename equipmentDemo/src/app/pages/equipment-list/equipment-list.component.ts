@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Equipment } from 'src/app/shared/model';
 import { DataService } from 'src/app/shared/service';
+import { DialogService } from 'ngx-bootstrap-modal';
+import { EquipmentDialogsComponent } from '../equipment-dialogs/equipment-dialogs.component';
 
 @Component({
   selector: 'app-equipment-list',
@@ -11,7 +13,11 @@ import { DataService } from 'src/app/shared/service';
 export class EquipmentListComponent implements OnInit {
   public equipments: Equipment[] = [];
 
-  constructor(private dataService: DataService, private router: Router) {}
+  constructor(
+    private dataService: DataService,
+    private router: Router,
+    public dialogService: DialogService
+  ) {}
 
   ngOnInit(): void {
     this.getAllEquipments();
@@ -23,8 +29,27 @@ export class EquipmentListComponent implements OnInit {
       .subscribe((res) => (this.equipments = res));
   }
 
-  getEquipmentDetail(i: number) {
+  confirmDelete(i: number) {
     let id = this.equipments[i].id;
+    this.dialogService
+      .addDialog(EquipmentDialogsComponent, {
+        title: '提示',
+        message: '确定要删除嘛',
+      })
+      .subscribe((isconfirmed) => {
+        if (isconfirmed) {
+          this.deleteEquipment(id);
+        } else {
+          //...
+        }
+      });
+  }
+
+  deleteEquipment(id: string) {
+    this.dataService.deleteEquipments(id);
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([this.router.url]);
+    });
   }
 
   reloadcreatePage() {

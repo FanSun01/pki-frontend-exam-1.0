@@ -11,23 +11,39 @@
           placeholder="should be auto generated"
         />
         <hr />
-        <label> model: </label>
-        <input type="text" formControlName="model" class="form-control" />
-        <hr />
-        <label> brand: </label>
-        <input type="text" formControlName="brand" class="form-control" />
-        <hr />
-        <label> weight: </label>
-        <input type="text" formControlName="weight" class="form-control" />
-        <hr />
-        <label> manufactureDate: </label>
+        <label for="model"> model: </label>
         <input
+          id="model"
+          type="text"
+          formControlName="model"
+          class="form-control"
+        />
+        <hr />
+        <label for="brand"> brand: </label>
+        <input
+          id="brand"
+          type="text"
+          formControlName="brand"
+          class="form-control"
+        />
+        <hr />
+        <label for="weight"> weight: </label>
+        <input
+          id="weight"
+          type="text"
+          formControlName="weight"
+          class="form-control"
+        />
+        <hr />
+        <label for="manufactureDate"> manufactureDate: </label>
+        <input
+          id="manufactureDate"
           type="date"
           formControlName="manufactureDate"
           class="form-control"
         />
         <hr />
-        <button class="btn btn-primary">提交</button>
+        <button type="submit" class="btn btn-primary">提交</button>
       </form>
     </div>
   </div>

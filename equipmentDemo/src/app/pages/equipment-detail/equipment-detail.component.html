@@ -1,13 +1,74 @@
 <app-layout>
   <div class="container">
+    <div>
+      <hr />
+      <button
+        *ngIf="!canEdit"
+        type="button"
+        class="btn btn-primary"
+        (click)="enableEdit()"
+      >
+        edit
+      </button>
+      <button
+        *ngIf="canEdit"
+        type="button"
+        class="btn btn-primary"
+        (click)="disableEdit()"
+      >
+        cancel edit
+      </button>
+      <button (click)="saveEdit()" type="button" class="btn btn-primary">
+        save
+      </button>
+    </div>
     <div class="form-group">
-      <form [formGroup]="equipmentForm" (submit)="onSubmit()">
-        <input type="text" formControlName="id"  class="form-control"/>
-        <input type="text" formControlName="model" class="form-control"/>
-        <input type="text" formControlName="brand" class="form-control"/>
-        <input type="text" formControlName="weight" class="form-control" />
-        <input type="text" formControlName="manufactureDate" class="form-control"/>
-        <button>提交</button>
+      <form [formGroup]="equipmentForm">
+        <label for="id"> id: </label>
+        <input
+          id="id"
+          type="text"
+          formControlName="id"
+          class="form-control"
+          readonly="true"
+        />
+        <hr />
+        <label for="model"> model: </label>
+        <input
+          id="model"
+          type="text"
+          formControlName="model"
+          class="form-control"
+          [readonly]="!canEdit"
+        />
+        <hr />
+        <label for="brand"> brand: </label>
+        <input
+          id="brand"
+          type="text"
+          formControlName="brand"
+          class="form-control"
+          [readonly]="!canEdit"
+        />
+        <hr />
+        <label for="weight"> weight: </label>
+        <input
+          id="weight"
+          type="text"
+          formControlName="weight"
+          class="form-control"
+          [readonly]="!canEdit"
+        />
+        <hr />
+        <label for="manufactureDate"> manufactureDate: </label>
+        <input
+          id="manufactureDate"
+          type="date"
+          formControlName="manufactureDate"
+          class="form-control"
+          [readonly]="!canEdit"
+        />
+        <hr />
       </form>
     </div>
   </div>

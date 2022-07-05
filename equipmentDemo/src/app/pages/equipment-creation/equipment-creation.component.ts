@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CanComponentLeave } from 'src/app/guards/unsave.guard';
 import { Equipment } from 'src/app/shared/model';
+import { DataService } from 'src/app/shared/service';
 
 @Component({
   selector: 'app-equipment-creation',
@@ -17,7 +19,7 @@ export class EquipmentCreationComponent implements OnInit, CanComponentLeave {
     manufactureDate: new FormControl(),
   });
 
-  constructor() {}
+  constructor(private dataService: DataService, private router: Router) {}
 
   ngOnInit(): void {
     this.equipmentForm.get('id')?.disable();
@@ -30,6 +32,7 @@ export class EquipmentCreationComponent implements OnInit, CanComponentLeave {
     submit.brand = this.equipmentForm.get('brand')?.value;
     submit.weight = this.equipmentForm.get('weight')?.value;
     submit.manufactureDate = this.equipmentForm.get('manufactureDate')?.value;
+    this.dataService.postEquipments(submit);
     console.log(submit);
   }
 

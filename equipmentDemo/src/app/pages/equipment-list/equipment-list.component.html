@@ -2,22 +2,45 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
+        <button
+        (click)="reloadcreatePage()"
+        type="button"
+        class="btn btn-primary"
+      >
+        create new
+      </button>
         <hr />
+
       </div>
     </div>
-    <div class="row">
-      <div class="col-6">
-        <ul class="list-group">
-          <li
-            @slide
-            *ngFor="let equipment of equipments; let i = index"
-            class="list-group-item"
-          >
-            {{ equipment.id }}
-            <button (click)="deleteEquipments(i)" type="button">删除</button>
-          </li>
-        </ul>
-      </div>
+
+    <div class="table-responsive">
+      <table class="table">
+        <tr>
+          <th>id</th>
+          <th>brand</th>
+          <th>model</th>
+          <th>weight</th>
+          <th>manufactureDate</th>
+        </tr>
+        <tr *ngFor="let equipment of equipments; let i = index">
+          <th>{{ equipment.id }}</th>
+          <th>{{ equipment.brand }}</th>
+          <th>{{ equipment.model }}</th>
+          <th>{{ equipment.weight }}</th>
+          <th>{{ equipment.manufactureDate }}</th>
+          <div>
+            <button
+              (click)="reloadDetailedPage(i)"
+              type="button"
+              class="btn btn-primary"
+            >
+              查看
+            </button>
+          </div>
+          <hr />
+        </tr>
+      </table>
     </div>
   </div>
 </app-layout>

@@ -20,7 +20,7 @@ const routes: Routes = [
     canDeactivate: [UnsaveGuard],
   },
   {
-    path: 'equipment-detail',
+    path: 'equipment-detail/:id',
     component: EquipmentDetailComponent,
   },
   {

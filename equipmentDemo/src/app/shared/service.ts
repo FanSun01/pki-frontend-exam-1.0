@@ -1,55 +1,65 @@
 import { Observable, Subject } from 'rxjs';
-import * as signalR from '@aspnet/signalr';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
-import { PrivateMessage, ImportProgress } from './model';
+import { Equipment } from './model';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SignalRService {
-  private privateMessage: Subject<PrivateMessage>;
-  private importProgress: Subject<ImportProgress>;
-  private connection: signalR.HubConnection;
-
-  constructor() {
-    this.privateMessage = new Subject<PrivateMessage>();
-    this.importProgress = new Subject<ImportProgress>();
-    this.connection = new signalR.HubConnectionBuilder()
-      .withUrl(environment.hubUrl)
-      .build();
-
-    this.connect();
+export class DataService {
+  private defaultServiceUrl: string;
+  constructor(private http: HttpClient) {
+    this.defaultServiceUrl = environment.baseurl;
+  }
+  getEquipmentAll(): Observable<Equipment[]> {
+    return this.http.get<Equipment[]>(this.defaultServiceUrl + '/equipments/');
   }
 
-  private connect() {
-    this.connection.start().catch((err) => console.log(err));
-    this.connection.on('ReceivePublicMessage', (user, msg) => {
-      this.privateMessage.next({ user: user, message: msg });
-    });
-    this.connection.on('ImportProgress', (msg1, msg2) => {
-      this.importProgress.next({ msg1: msg1, msg2: msg2 });
-    });
+  geteEquipmentById(id: string = ''): Observable<Equipment> {
+    return this.http.get<Equipment>(
+      this.defaultServiceUrl + '/equipments/' + id
+    );
   }
 
-  public getPrivateMessage(): Observable<PrivateMessage> {
-    return this.privateMessage;
+  postEquipments(equip: Equipment) {
+    return this.http.post<Equipment>(
+      this.defaultServiceUrl + '/equipments',
+      equip,
+      { responseType: 'text' as any }
+    );
   }
 
-  public getImportProgress(): Observable<ImportProgress> {
-    return this.importProgress;
+  deleteEquipments(id: string): Observable<void> {
+    let res = this.http.delete<void>(
+      this.defaultServiceUrl + '/equipments/' + id
+    );
+    return res;
   }
 
-  public sendPrivatMessage(user: string, message: string) {
-    this.connection.invoke('SendPublicMessage', user, message);
+  patchEquipments(equip: Equipment): Observable<void> {
+    let res = this.http.patch<void>(
+      this.defaultServiceUrl + '/equipments/' + equip.id,
+      equip
+    );
+    return res;
   }
 
-  public beginEnglishDictionaryImport() {
-    this.connection.invoke('ImportEnglishDictionary');
+  putEquipments(equip: Equipment): Observable<void> {
+    let res = this.http.put<void>(
+      this.defaultServiceUrl + '/equipments/' + equip.id,
+      equip
+    );
+    return res;
   }
 
-  public disconnect() {
-    this.connection.stop();
-  }
+  /*
+  GET /equipments
+GET /equipments/asset:001
+POST /equipments
+PUT /equipments/asset:001
+PATCH /equipments/asset:001
+DELETE /equipments/asset:001
+*/
 }
